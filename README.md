@@ -1,13 +1,8 @@
-# RuleWorld
-RuleWorld is a Compositional Continual Learning benchmark testing algorithmic resilience, not just semantic facts. Featuring 40 procedurally generated tasks, it measures a model's ability to quarantine interference (Domain Isolation) and achieve Positive Backward Transfer (BWT+) when chaining primitives into complex multi-step composites.
-
-
-
 # 🌍 RuleWorld: A Benchmark for Compositional Continual Learning
 
 Most Continual Learning (CL) benchmarks test **Semantic Forgetting**—asking if a Large Language Model forgets facts from Wikipedia while fine-tuning on medical journals.
 
-**RuleWorld** tests **Algorithmic Forgetting and Compositional Resilience**. It evaluates whether a model can sequentially learn distinct, deterministic programmatic functions (, ) and maintain those isolated rules when pressured to combine them into complex algorithmic hierarchies ().
+**RuleWorld** tests **Algorithmic Forgetting and Compositional Resilience**. It evaluates whether a model can sequentially learn distinct, deterministic programmatic functions ($P_1, P_2$) and maintain those isolated rules when pressured to combine them into complex algorithmic hierarchies ($P_1 \circ P_2$).
 
 Standard LLMs and traditional CL methods (like Sequential LoRA) fail spectacularly on RuleWorld due to representational collapse and catastrophic algorithmic forgetting.
 
@@ -31,13 +26,13 @@ RuleWorld consists of a curriculum of **40 tasks**, generated procedurally to pr
 * **Intra-Domain Clashes:** E.g., `C09 (MIRROR ∘ SLICE)` — Extract a substring and mirror it. Known to cause severe router mode collapse in dynamic networks.
 * **Inter-Domain Clashes:** Forcing the model to maintain strict operational order across mathematical and structural boundaries.
 
-📖 Deep Dive: For a comprehensive mathematical breakdown of all 20 Primitives and 20 Composites, including vocabulary constraints and permutation logic, read the full RuleWorld Task Taxonomy.
+📖 **Deep Dive:** For a comprehensive mathematical breakdown of all 20 Primitives and 20 Composites, including vocabulary constraints and permutation logic, read the full [RuleWorld Task Taxonomy](docs/Ruleworld_task_taxonomy.md.txt).
 
 ---
 
 ## 📊 Evaluation Metrics
 
-To succeed on RuleWorld, an architecture must be evaluated across a continuous  matrix. We measure three specific phenomena:
+To succeed on RuleWorld, an architecture must be evaluated across a continuous $T \times T$ matrix. We measure three specific phenomena:
 
 1. **Catastrophic Algorithmic Forgetting:** Does learning the mathematical composite `C14` overwrite the spatial weights that govern primitive `P01`?
 2. **Domain Isolation:** Can the architecture quarantine interference? If String Composites cause an interference event, do the Math Primitives remain insulated and mathematically pristine?
@@ -49,22 +44,9 @@ To succeed on RuleWorld, an architecture must be evaluated across a continuous  
 
 This repository includes the data generation scripts, evaluation harness, and code for three standard open-source baselines to demonstrate the difficulty of the benchmark:
 
-1. **Frozen Zero-Shot (`baselines/baseline_eval.py`):** Standard inference on base LLMs (e.g., Llama-3, Mistral) without training. Proves that models cannot natively execute algorithmic compositions reliably.
-2. **Sequential LoRA (`baselines/baseline_seq_lora.py`):** The naive Continual Learning approach. Training a single LoRA adapter sequentially from Task 1 to Task 40. Exhibits massive, undeniable catastrophic forgetting by Task C05.
-3. **Best-of-N (`baselines/baseline_bon.py`):** Inference-time scaling (generating *N* responses and selecting the most consistent). Proves that compute scaling alone cannot resolve algorithmic structural clashes.
-
----
-
-## 🏆 The Reference Architecture: MorphoLayer (Proprietary)
-
-While standard architectures fail RuleWorld, it is solvable.
-
-Our proprietary reference architecture, **MorphoLayer** (a dynamic adapter-spawning network), currently holds the State-of-the-Art (SOTA) on RuleWorld. It demonstrates:
-
-* **Domain Isolation:** Successfully partitioning the "Digit Domain" weights from the "Symbol Domain", preventing cross-domain catastrophic collapse during high-interference tasks.
-* **11x Positive Backward Transfer (BWT+):** LevinLayer achieved up to an 11x performance multiplier on underlying primitives (`P12`, `P13`) *after* being trained on their composite structures, proving that algorithmic composition can act as a performance enhancer in properly routed networks.
-
-*Can your architecture beat the LevinLayer baselines? We invite the community to try.*
+1. **Frozen Zero-Shot (`baseline_eval.py`):** Standard inference on base LLMs (e.g., Llama-3, Mistral) without training. Proves that models cannot natively execute algorithmic compositions reliably.
+2. **Sequential LoRA (`baseline_seq_lora.py`):** The naive Continual Learning approach. Training a single LoRA adapter sequentially from Task 1 to Task 40. Exhibits massive, undeniable catastrophic forgetting by Task C05.
+3. **Best-of-N (`baseline_bon.py`):** Inference-time scaling (generating *N* responses and selecting the most consistent). Proves that compute scaling alone cannot resolve algorithmic structural clashes.
 
 ---
 
@@ -75,44 +57,36 @@ Our proprietary reference architecture, **MorphoLayer** (a dynamic adapter-spawn
 RuleWorld data is generated procedurally via the provided manifest.
 
 ```bash
-git clone https://github.com/YourUsername/RuleWorld.git
+git clone [https://github.com/vetchj88/RuleWorld.git](https://github.com/vetchj88/RuleWorld.git)
 cd RuleWorld
 python scripts/generate_data.py --manifest manifests/ruleworld_manifest_v1.json --samples_per_task 5000 --seed 20260126
 
-```
-
-### 2. Run a Baseline
+2. Run a Baseline
 
 Evaluate the Sequential LoRA baseline to observe catastrophic forgetting:
+Bash
 
-```bash
 python baselines/baseline_seq_lora.py --data_root data/ruleworld_v1 --model "meta-llama/Meta-Llama-3-8B"
 
-```
+3. Evaluate Your Own Model
 
-### 3. Evaluate Your Own Model
+Use the standard evaluation harness to generate your T×T matrix:
+Bash
 
-Use the standard evaluation harness to generate your  matrix:
+python scripts/evaluate.py --predictions my_model_outputs.jsonl --ground_truth data/ruleworld_v1/test/
 
-```bash
-python scripts/evaluation.py --predictions my_model_outputs.jsonl --ground_truth data/ruleworld_v1/test/
+📄 License & Citation
 
-```
-
----
-
-## 📄 License & Citation
-
-RuleWorld is released under the [MIT License](./LICENSE).
+RuleWorld is released under the MIT License.
 
 If you use RuleWorld in your research, please cite:
+Code snippet
 
-```bibtex
 @misc{Vetch2026ruleworld,
   author = {Vetch, Justin M.},
   title = {RuleWorld: A Benchmark for Compositional Continual Learning},
   year = {2026},
   publisher = {GitHub},
   journal = {GitHub repository},
-  howpublished = {\url{https://github.com/vetchj88/RuleWorld}}
+  howpublished = {\url{[https://github.com/vetchj88/RuleWorld](https://github.com/vetchj88/RuleWorld)}}
 }
