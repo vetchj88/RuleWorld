@@ -1,0 +1,743 @@
+{
+  "meta": {
+    "ruleworld_version": "RuleWorld-v1.0",
+    "global_seed": 20260126,
+    "seed32": "seed32(s)=uint32_from_sha256(s) using first 4 bytes big-endian",
+    "task_indexing": "index 1-20 = P01..P20 primitives; index 21-40 = C01..C20 composites in curriculum order",
+    "vocab_S": [
+      "ba",
+      "be",
+      "bi",
+      "bo",
+      "bu",
+      "da",
+      "de",
+      "di",
+      "do",
+      "du",
+      "ga",
+      "ge",
+      "gi",
+      "go",
+      "gu",
+      "ka",
+      "ke",
+      "ki",
+      "ko",
+      "ku",
+      "la",
+      "le",
+      "li",
+      "lo"
+    ],
+    "vocab_D": [
+      "d0",
+      "d1",
+      "d2",
+      "d3",
+      "d4",
+      "d5",
+      "d6",
+      "d7",
+      "d8",
+      "d9"
+    ],
+    "marker_token": "zz",
+    "perm_convention": "Permutation lists map base_order[i] -> perm_list[i]. For S, base_order=vocab_S; for digits, base_order=[0..9]."
+  },
+  "tasks": [
+    {
+      "index": 1,
+      "task_id": "P01",
+      "type": "primitive",
+      "domain": "S",
+      "op": "REV",
+      "params": {}
+    },
+    {
+      "index": 2,
+      "task_id": "P02",
+      "type": "primitive",
+      "domain": "S",
+      "op": "ROTL",
+      "params": {
+        "k": 4
+      }
+    },
+    {
+      "index": 3,
+      "task_id": "P03",
+      "type": "primitive",
+      "domain": "S",
+      "op": "CHUNKREV",
+      "params": {
+        "g": 4
+      }
+    },
+    {
+      "index": 4,
+      "task_id": "P04",
+      "type": "primitive",
+      "domain": "S",
+      "op": "STRIDEKEEP",
+      "params": {
+        "s": 4,
+        "o": 2
+      }
+    },
+    {
+      "index": 5,
+      "task_id": "P05",
+      "type": "primitive",
+      "domain": "S",
+      "op": "FILTERIN",
+      "params": {
+        "A": [
+          "ki",
+          "ba",
+          "lo",
+          "do",
+          "ku",
+          "bu",
+          "le",
+          "du"
+        ]
+      }
+    },
+    {
+      "index": 6,
+      "task_id": "P06",
+      "type": "primitive",
+      "domain": "S",
+      "op": "SUBST",
+      "params": {
+        "pi_list": [
+          "du",
+          "ge",
+          "bi",
+          "di",
+          "li",
+          "ba",
+          "do",
+          "ke",
+          "gu",
+          "ki",
+          "bu",
+          "ga",
+          "be",
+          "lo",
+          "go",
+          "da",
+          "ku",
+          "le",
+          "la",
+          "bo",
+          "gi",
+          "ka",
+          "ko",
+          "de"
+        ]
+      }
+    },
+    {
+      "index": 7,
+      "task_id": "P07",
+      "type": "primitive",
+      "domain": "S",
+      "op": "DUPLICATE",
+      "params": {
+        "A": [
+          "le",
+          "do",
+          "bi",
+          "ki",
+          "bu",
+          "de"
+        ]
+      }
+    },
+    {
+      "index": 8,
+      "task_id": "P08",
+      "type": "primitive",
+      "domain": "S",
+      "op": "INSERTZZ",
+      "params": {
+        "A": [
+          "bo",
+          "ka",
+          "da",
+          "do",
+          "ge",
+          "gu"
+        ]
+      }
+    },
+    {
+      "index": 9,
+      "task_id": "P09",
+      "type": "primitive",
+      "domain": "S",
+      "op": "PARTITION",
+      "params": {
+        "A": [
+          "bo",
+          "di",
+          "ke",
+          "lo",
+          "gu",
+          "ba",
+          "ge",
+          "la"
+        ]
+      }
+    },
+    {
+      "index": 10,
+      "task_id": "P10",
+      "type": "primitive",
+      "domain": "S",
+      "op": "SORT",
+      "params": {}
+    },
+    {
+      "index": 11,
+      "task_id": "P11",
+      "type": "primitive",
+      "domain": "S",
+      "op": "UNIQUE",
+      "params": {}
+    },
+    {
+      "index": 12,
+      "task_id": "P12",
+      "type": "primitive",
+      "domain": "S",
+      "op": "MIRROR",
+      "params": {}
+    },
+    {
+      "index": 13,
+      "task_id": "P13",
+      "type": "primitive",
+      "domain": "S",
+      "op": "SLICE",
+      "params": {
+        "p": 3,
+        "w": 8
+      }
+    },
+    {
+      "index": 14,
+      "task_id": "P14",
+      "type": "primitive",
+      "domain": "S→(S,D)",
+      "op": "RUNLEN",
+      "params": {}
+    },
+    {
+      "index": 15,
+      "task_id": "P15",
+      "type": "primitive",
+      "domain": "D",
+      "op": "DREV",
+      "params": {}
+    },
+    {
+      "index": 16,
+      "task_id": "P16",
+      "type": "primitive",
+      "domain": "D",
+      "op": "DROT",
+      "params": {
+        "k": 6
+      }
+    },
+    {
+      "index": 17,
+      "task_id": "P17",
+      "type": "primitive",
+      "domain": "D",
+      "op": "DADD",
+      "params": {
+        "c": 2
+      }
+    },
+    {
+      "index": 18,
+      "task_id": "P18",
+      "type": "primitive",
+      "domain": "D",
+      "op": "DMUL",
+      "params": {
+        "m": 7
+      }
+    },
+    {
+      "index": 19,
+      "task_id": "P19",
+      "type": "primitive",
+      "domain": "D",
+      "op": "DPREFIXSUM",
+      "params": {}
+    },
+    {
+      "index": 20,
+      "task_id": "P20",
+      "type": "primitive",
+      "domain": "D",
+      "op": "DPERM",
+      "params": {
+        "sigma_list": [
+          6,
+          0,
+          8,
+          7,
+          4,
+          3,
+          2,
+          9,
+          5,
+          1
+        ]
+      }
+    },
+    {
+      "index": 21,
+      "task_id": "C01",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "ROTL",
+        "f_params": {
+          "k": 5
+        },
+        "g": "REV",
+        "g_params": {}
+      }
+    },
+    {
+      "index": 22,
+      "task_id": "C02",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "SUBST",
+        "f_params": {
+          "pi_list": [
+            "ku",
+            "li",
+            "du",
+            "ga",
+            "ke",
+            "ba",
+            "gi",
+            "bi",
+            "bu",
+            "le",
+            "di",
+            "ge",
+            "go",
+            "gu",
+            "ka",
+            "lo",
+            "ko",
+            "bo",
+            "ki",
+            "la",
+            "da",
+            "do",
+            "be",
+            "de"
+          ]
+        },
+        "g": "PARTITION",
+        "g_params": {
+          "A": [
+            "ki",
+            "ka",
+            "ga",
+            "bu",
+            "do",
+            "ko",
+            "ge",
+            "le"
+          ]
+        }
+      }
+    },
+    {
+      "index": 23,
+      "task_id": "C03",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "FILTERIN",
+        "f_params": {
+          "A": [
+            "gu",
+            "le",
+            "ba",
+            "li",
+            "ga",
+            "ke",
+            "ka",
+            "lo"
+          ]
+        },
+        "g": "SORT",
+        "g_params": {}
+      }
+    },
+    {
+      "index": 24,
+      "task_id": "C04",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "STRIDEKEEP",
+        "f_params": {
+          "s": 2,
+          "o": 0
+        },
+        "g": "INSERTZZ",
+        "g_params": {
+          "A": [
+            "lo",
+            "ka",
+            "gu",
+            "gi",
+            "le",
+            "ki"
+          ]
+        }
+      }
+    },
+    {
+      "index": 25,
+      "task_id": "C05",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "CHUNKREV",
+        "f_params": {
+          "g": 4
+        },
+        "g": "MIRROR",
+        "g_params": {}
+      }
+    },
+    {
+      "index": 26,
+      "task_id": "C06",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "SLICE",
+        "f_params": {
+          "p": 0,
+          "w": 8
+        },
+        "g": "DUPLICATE",
+        "g_params": {
+          "A": [
+            "do",
+            "bu",
+            "be",
+            "ki",
+            "di",
+            "le"
+          ]
+        }
+      }
+    },
+    {
+      "index": 27,
+      "task_id": "C07",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "UNIQUE",
+        "f_params": {},
+        "g": "PARTITION",
+        "g_params": {
+          "A": [
+            "do",
+            "ku",
+            "da",
+            "li",
+            "le",
+            "bu",
+            "de",
+            "du"
+          ]
+        }
+      }
+    },
+    {
+      "index": 28,
+      "task_id": "C08",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "INSERTZZ",
+        "f_params": {
+          "A": [
+            "gu",
+            "ko",
+            "ka",
+            "bi",
+            "ke",
+            "do"
+          ]
+        },
+        "g": "SUBST",
+        "g_params": {
+          "pi_list": [
+            "di",
+            "ga",
+            "de",
+            "gi",
+            "ba",
+            "da",
+            "ka",
+            "ku",
+            "la",
+            "ge",
+            "le",
+            "ki",
+            "bi",
+            "bu",
+            "li",
+            "ke",
+            "gu",
+            "du",
+            "be",
+            "do",
+            "bo",
+            "ko",
+            "lo",
+            "go"
+          ]
+        }
+      }
+    },
+    {
+      "index": 29,
+      "task_id": "C09",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "MIRROR",
+        "f_params": {},
+        "g": "SLICE",
+        "g_params": {
+          "p": 1,
+          "w": 5
+        }
+      }
+    },
+    {
+      "index": 30,
+      "task_id": "C10",
+      "type": "composite",
+      "domain": "S",
+      "composition": {
+        "f": "ROTL",
+        "f_params": {
+          "k": 2
+        },
+        "g": "FILTERIN",
+        "g_params": {
+          "A": [
+            "da",
+            "bo",
+            "ga",
+            "di",
+            "ge",
+            "du",
+            "gi",
+            "ku"
+          ]
+        }
+      }
+    },
+    {
+      "index": 31,
+      "task_id": "C11",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DADD",
+        "f_params": {
+          "c": 9
+        },
+        "g": "DREV",
+        "g_params": {}
+      }
+    },
+    {
+      "index": 32,
+      "task_id": "C12",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DREV",
+        "f_params": {},
+        "g": "DPREFIXSUM",
+        "g_params": {}
+      }
+    },
+    {
+      "index": 33,
+      "task_id": "C13",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DPERM",
+        "f_params": {
+          "sigma_list": [
+            3,
+            6,
+            9,
+            7,
+            8,
+            1,
+            5,
+            4,
+            2,
+            0
+          ]
+        },
+        "g": "DADD",
+        "g_params": {
+          "c": 9
+        }
+      }
+    },
+    {
+      "index": 34,
+      "task_id": "C14",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DROT",
+        "f_params": {
+          "k": 1
+        },
+        "g": "DMUL",
+        "g_params": {
+          "m": 7
+        }
+      }
+    },
+    {
+      "index": 35,
+      "task_id": "C15",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DPREFIXSUM",
+        "f_params": {},
+        "g": "DPERM",
+        "g_params": {
+          "sigma_list": [
+            7,
+            6,
+            4,
+            8,
+            2,
+            1,
+            5,
+            0,
+            9,
+            3
+          ]
+        }
+      }
+    },
+    {
+      "index": 36,
+      "task_id": "C16",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DMUL",
+        "f_params": {
+          "m": 9
+        },
+        "g": "DREV",
+        "g_params": {}
+      }
+    },
+    {
+      "index": 37,
+      "task_id": "C17",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DADD",
+        "f_params": {
+          "c": 7
+        },
+        "g": "DROT",
+        "g_params": {
+          "k": 4
+        }
+      }
+    },
+    {
+      "index": 38,
+      "task_id": "C18",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DPERM",
+        "f_params": {
+          "sigma_list": [
+            7,
+            9,
+            3,
+            1,
+            6,
+            4,
+            5,
+            0,
+            8,
+            2
+          ]
+        },
+        "g": "DREV",
+        "g_params": {}
+      }
+    },
+    {
+      "index": 39,
+      "task_id": "C19",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DPREFIXSUM",
+        "f_params": {},
+        "g": "DADD",
+        "g_params": {
+          "c": 8
+        }
+      }
+    },
+    {
+      "index": 40,
+      "task_id": "C20",
+      "type": "composite",
+      "domain": "D",
+      "composition": {
+        "f": "DROT",
+        "f_params": {
+          "k": 6
+        },
+        "g": "DPREFIXSUM",
+        "g_params": {}
+      }
+    }
+  ]
+}

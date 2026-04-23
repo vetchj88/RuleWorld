@@ -1,0 +1,18 @@
+# Core ML
+torch>=2.4.0
+transformers>=4.45.0
+accelerate>=0.34.0
+safetensors>=0.4.5
+huggingface_hub>=0.34.0,<1.0
+
+# LoRA / adapters (for upcoming LevinLayer training)
+peft>=0.12.0
+
+# Data + utilities
+numpy>=1.26.0
+pyyaml>=6.0.1
+tqdm>=4.66.0
+
+# Optional but useful (analysis + reporting)
+pandas>=2.2.0
+matplotlib>=3.8.0
